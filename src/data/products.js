@@ -52,6 +52,16 @@ const rows = [
     [[50, 315], [250, 288], [1000, 262]], 12],
 ];
 
+
+// Image search keywords per product (index-aligned with rows) for real photos.
+const imgKw = [
+  "smartphone", "headphones", "laptop", "washing,machine", "air,conditioner",
+  "cooktop,stove", "clothing,ethnic", "saree", "sneakers,shoes", "jar,bottle",
+  "yoga,mat", "fitness,supplement", "flour,wheat", "salt", "oil,bottle",
+  "led,light", "steel,metal", "helmet,safety", "lipstick,cosmetics", "skincare,serum",
+  "cookware,pan", "flask,bottle", "water,bottle", "lightbulb",
+];
+
 export const products = rows.map((r, i) => {
   const [name, cat, emoji, price, mrp, rating, reviews, brand, inStock, tiers, moq] = r;
   return {
@@ -62,6 +72,7 @@ export const products = rows.map((r, i) => {
     tiers, moq,
     discount: Math.round(((mrp - price) / mrp) * 100),
     b2bFrom: tiers[tiers.length - 1][1],
+    img: imgKw[i],
   };
 });
 
