@@ -11,6 +11,7 @@ import SectionHeader from "../components/SectionHeader.jsx";
 import HeroCarousel from "../components/HeroCarousel.jsx";
 import QuickViewModal from "../components/QuickViewModal.jsx";
 import Reveal from "../components/Reveal.jsx";
+import FlashSale from "../components/FlashSale.jsx";
 
 const brands = ["Realme", "boAt", "Dell", "Samsung", "Prestige", "Puma", "Dabur", "Nykaa", "Milton", "Philips", "MuscleBlaze", "Fortune"];
 
@@ -37,6 +38,8 @@ export default function Home() {
         </div>
 
         {/* Categories */}
+        <div className="mt-5"><FlashSale /></div>
+
         <section className="py-8">
           <Reveal><SectionHeader title="Shop by category" sub="Browse across retail and wholesale" /></Reveal>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">

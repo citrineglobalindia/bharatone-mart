@@ -37,7 +37,7 @@ export default function Product() {
   const buy = () => { cart.add(p, qty); nav("/checkout"); };
 
   return (
-    <div className="container-x py-6">
+    <div className="container-x py-6 pb-28 md:pb-6">
       <div className="mb-4 text-sm text-gray-500">
         <Link to="/" className="hover:text-saffron-600">Home</Link> / <Link to={`/category/${p.category}`} className="hover:text-saffron-600">{p.categoryName}</Link> / <span className="text-gray-700">{p.brand}</span>
       </div>
@@ -150,6 +150,16 @@ export default function Product() {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">{related.map((r) => (<ProductCard key={r.id} product={r} onQuickView={setQv} />))}</div>
         </section>
       )}
+
+      {/* Mobile sticky buy bar */}
+      <div className="glass pb-safe fixed inset-x-0 bottom-0 z-40 flex items-center gap-3 border-t border-gray-200 px-4 py-3 md:hidden">
+        <div className="shrink-0">
+          <div className="text-lg font-extrabold leading-none">{inr(p.price)}</div>
+          <div className="text-[11px] text-gray-400 line-through">{inr(p.mrp)}</div>
+        </div>
+        <button onClick={add} className="btn-outline flex-1 py-2.5"><ShoppingCart size={16} /> Add</button>
+        <button onClick={buy} className="btn-primary flex-1 py-2.5"><Zap size={16} /> Buy now</button>
+      </div>
 
       {rfq && <RfqModal product={p} onClose={() => setRfq(false)} />}
       <QuickViewModal product={qv} onClose={() => setQv(null)} onAdd={(pr) => { cart.add(pr, 1); toast("Added to cart", { type: "cart", sub: pr.name }); setQv(null); }} />

@@ -5,6 +5,8 @@ import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import AnnouncementBar from "./AnnouncementBar.jsx";
 import WelcomeModal from "./WelcomeModal.jsx";
+import BottomNav from "./BottomNav.jsx";
+import ScrollTop from "./ScrollTop.jsx";
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -13,7 +15,7 @@ export default function Layout() {
     <div className="flex min-h-screen flex-col">
       <AnnouncementBar />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pb-16 md:pb-0">
         <AnimatePresence mode="wait">
           <motion.div key={pathname}
             initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
@@ -24,6 +26,8 @@ export default function Layout() {
       </main>
       <Footer />
       <WelcomeModal />
+      <ScrollTop />
+      <BottomNav />
     </div>
   );
 }
