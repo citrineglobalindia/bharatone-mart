@@ -32,7 +32,7 @@ export default function ProductCard({ product, onQuickView }) {
       </button>
 
       <Link to={`/product/${product.id}`} className="block">
-        <ProductThumb product={product} className="h-52 w-full sm:h-56" zoom />
+        <ProductThumb product={product} className="h-44 w-full xs:h-52 sm:h-56" zoom />
       </Link>
 
       {onQuickView && (

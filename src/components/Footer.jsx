@@ -10,7 +10,7 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-gray-200 bg-white">
+    <footer className="mt-16 border-t border-gray-200 bg-white pb-16 md:pb-0">
       <div className="container-x grid grid-cols-2 gap-6 border-b border-gray-100 py-8 sm:grid-cols-4">
         {[[ShieldCheck, "Verified sellers", "GST & PAN checked"], [Truck, "Pan-India delivery", "27,000+ pincodes"], [BadgeIndianRupee, "Secure payments", "UPI · Cards · COD"], [Headphones, "Support", "Hindi & regional"]].map(([Icon, t, s], i) => (
           <div key={i} className="flex items-start gap-3">
