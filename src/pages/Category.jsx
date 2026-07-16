@@ -3,7 +3,10 @@ import { useMemo, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import { catBySlug } from "../data/categories.js";
 import { forCategory, products } from "../data/products.js";
+import { useCart } from "../lib/store.jsx";
+import { useToast } from "../lib/toast.jsx";
 import ProductCard from "../components/ProductCard.jsx";
+import QuickViewModal from "../components/QuickViewModal.jsx";
 
 const sorts = { relevance: "Relevance", "price-asc": "Price: Low to High", "price-desc": "Price: High to Low", rating: "Top rated", discount: "Discount" };
 
@@ -15,6 +18,9 @@ export default function Category() {
   const [sort, setSort] = useState("relevance");
   const [maxPrice, setMaxPrice] = useState(60000);
   const [onlyStock, setOnlyStock] = useState(false);
+  const [qv, setQv] = useState(null);
+  const cart = useCart();
+  const { toast } = useToast();
 
   const base = q ? products : forCategory(slug);
   const list = useMemo(() => {
@@ -59,12 +65,14 @@ export default function Category() {
             </select>
           </div>
           {list.length ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">{list.map((p) => (<ProductCard key={p.id} product={p} />))}</div>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">{list.map((p) => (<ProductCard key={p.id} product={p} onQuickView={setQv} />))}</div>
           ) : (
             <div className="card p-10 text-center text-gray-500">No products match these filters.</div>
           )}
         </div>
       </div>
+
+      <QuickViewModal product={qv} onClose={() => setQv(null)} onAdd={(pr) => { cart.add(pr, 1); toast("Added to cart", { type: "cart", sub: pr.name }); setQv(null); }} />
     </div>
   );
 }

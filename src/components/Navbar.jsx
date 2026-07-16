@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Search, ShoppingCart, User, Menu, MapPin, Store, LayoutGrid, X } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../lib/store.jsx";
 import { categories } from "../data/categories.js";
 
@@ -50,9 +51,12 @@ export default function Navbar() {
           <NavLink to="/account" className="btn-ghost text-sm"><User size={16} /><span className="hidden sm:inline">Account</span></NavLink>
           <Link to="/cart" className="btn-ghost relative text-sm">
             <ShoppingCart size={18} />
-            {cart.count > 0 && (
-              <span className="absolute -right-0 -top-0 grid h-4 w-4 place-items-center rounded-full bg-india-green text-[10px] font-bold text-white">{cart.count}</span>
-            )}
+            <AnimatePresence>
+              {cart.count > 0 && (
+                <motion.span key={cart.count} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ type: "spring", stiffness: 500, damping: 18 }}
+                  className="absolute -right-0 -top-0 grid h-4 w-4 place-items-center rounded-full bg-india-green text-[10px] font-bold text-white">{cart.count}</motion.span>
+              )}
+            </AnimatePresence>
           </Link>
         </div>
       </div>

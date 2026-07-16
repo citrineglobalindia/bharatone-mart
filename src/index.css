@@ -4,17 +4,41 @@
 
 :root { color-scheme: light; }
 * { -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
 body { @apply bg-gray-50 text-gray-900 antialiased; }
 
+::-webkit-scrollbar { height: 8px; width: 8px; }
+::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
+
 @layer components {
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50; }
-  .btn-primary { @apply btn bg-saffron-500 text-white hover:bg-saffron-600; }
-  .btn-green { @apply btn bg-india-green text-white hover:bg-india-greenDark; }
-  .btn-outline { @apply btn border border-gray-300 bg-white text-gray-800 hover:border-gray-400 hover:bg-gray-50; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all active:scale-95 disabled:opacity-50; }
+  .btn-primary { @apply btn bg-saffron-500 text-white shadow-sm hover:bg-saffron-600 hover:shadow-md; }
+  .btn-green { @apply btn bg-india-green text-white shadow-sm hover:bg-india-greenDark hover:shadow-md; }
+  .btn-outline { @apply btn border border-gray-300 bg-white text-gray-800 hover:border-saffron-400 hover:bg-saffron-50; }
   .btn-ghost { @apply btn text-gray-700 hover:bg-gray-100; }
   .card { @apply rounded-xl border border-gray-200 bg-white shadow-card; }
-  .input { @apply w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-saffron-500 focus:ring-2 focus:ring-saffron-100; }
+  .input { @apply w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none transition focus:border-saffron-500 focus:ring-2 focus:ring-saffron-100; }
   .label { @apply mb-1 block text-sm font-medium text-gray-700; }
   .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium; }
   .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6; }
+  .gradient-text { @apply bg-gradient-to-r from-saffron-500 via-orange-500 to-india-green bg-clip-text text-transparent; }
 }
+
+@layer utilities {
+  .shimmer {
+    background: linear-gradient(90deg,#f1f1f4 25%,#e4e4e7 37%,#f1f1f4 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+  }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-fadeup { animation: fadeup .6s ease both; }
+  .marquee { animation: marquee 28s linear infinite; }
+  .marquee:hover { animation-play-state: paused; }
+}
+
+@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes fadeup { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ticker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
