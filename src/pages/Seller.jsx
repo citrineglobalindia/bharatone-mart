@@ -61,12 +61,12 @@ export default function Seller() {
 
           {tab === "products" && (
             <div>
-              <h3 className="mb-3 font-semibold">Your listings ({products.slice(0, 8).length})</h3>
+              <h3 className="mb-3 font-semibold">Your listings ({products.length})</h3>
               <div className="overflow-hidden rounded-xl border border-gray-200">
                 <table className="w-full text-sm">
                   <thead className="bg-gray-50 text-left text-xs uppercase text-gray-500"><tr><th className="p-3">Product</th><th className="p-3">Retail</th><th className="p-3">B2B from</th><th className="p-3">Rating</th><th className="p-3">Status</th></tr></thead>
                   <tbody className="divide-y divide-gray-100">
-                    {products.slice(0, 8).map((p) => (
+                    {products.slice(0, 12).map((p) => (
                       <tr key={p.id} className="hover:bg-gray-50">
                         <td className="p-3"><Link to={`/product/${p.id}`} className="flex items-center gap-2 font-medium hover:text-saffron-600"><span className="text-lg">{p.emoji}</span> {p.name}</Link></td>
                         <td className="p-3">{inr(p.price)}</td><td className="p-3 text-india-navy">{inr(p.b2bFrom)}</td><td className="p-3">{p.rating} ★</td>

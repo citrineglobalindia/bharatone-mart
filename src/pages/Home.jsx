@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Package, TrendingUp, Users, ShieldCheck, Truck, Percent } from "lucide-react";
+import { ArrowRight, Package, Users, ShieldCheck, Truck, Percent } from "lucide-react";
 import { categories } from "../data/categories.js";
 import { featured, deals, products } from "../data/products.js";
 import { useCart } from "../lib/store.jsx";

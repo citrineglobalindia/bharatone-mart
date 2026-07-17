@@ -9,7 +9,7 @@ import RfqModal from "../components/RfqModal.jsx";
 export default function B2B() {
   const [rfqProduct, setRfqProduct] = useState(null);
   const [q, setQ] = useState("");
-  const list = products.filter((p) => p.name.toLowerCase().includes(q.toLowerCase())).slice(0, 8);
+  const list = products.filter((p) => p.name.toLowerCase().includes(q.toLowerCase())).slice(0, 10);
 
   return (
     <div>

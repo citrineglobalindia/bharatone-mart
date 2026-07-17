@@ -17,7 +17,7 @@ function Filters({ maxPrice, setMaxPrice, onlyStock, setOnlyStock }) {
       <div className="mb-3 flex items-center gap-2 font-semibold text-gray-800"><SlidersHorizontal size={16} /> Filters</div>
       <div className="mb-4">
         <div className="mb-1 flex justify-between text-sm"><span>Max price</span><span className="font-semibold">₹{new Intl.NumberFormat("en-IN").format(maxPrice)}</span></div>
-        <input type="range" min="200" max="60000" step="200" value={maxPrice} onChange={(e) => setMaxPrice(+e.target.value)} className="w-full accent-saffron-500" />
+        <input type="range" min="50" max="70000" step="50" value={maxPrice} onChange={(e) => setMaxPrice(+e.target.value)} className="w-full accent-saffron-500" />
       </div>
       <label className="mb-4 flex items-center gap-2 text-sm"><input type="checkbox" checked={onlyStock} onChange={(e) => setOnlyStock(e.target.checked)} className="accent-india-green" /> In stock only</label>
       <div className="rounded-lg bg-india-greenLight p-2 text-xs text-india-greenDark">B2B tiered pricing available on all items — see product page.</div>
@@ -31,7 +31,7 @@ export default function Category() {
   const q = sp.get("q");
   const cat = catBySlug[slug];
   const [sort, setSort] = useState("relevance");
-  const [maxPrice, setMaxPrice] = useState(60000);
+  const [maxPrice, setMaxPrice] = useState(70000);
   const [onlyStock, setOnlyStock] = useState(false);
   const [qv, setQv] = useState(null);
   const [sheet, setSheet] = useState(false);
